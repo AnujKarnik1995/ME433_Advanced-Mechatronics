@@ -30,6 +30,7 @@ void ssd1306_update(void);
 void ssd1306_clear(void);
 void ssd1306_drawPixel(unsigned char x, unsigned char y, unsigned char color);
 void drawChar(unsigned char xc, unsigned char yc, unsigned char word);
+void drawString(unsigned char xc, unsigned char yc, unsigned char *string
 /// this should be private
 void ssd1306_command(unsigned char c);
 

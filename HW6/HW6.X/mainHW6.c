@@ -54,8 +54,8 @@ int main() {
     DDPCONbits.JTAGEN = 0;
 
     TRISBbits.TRISB4 = 1;
-    TRISAbits.TRISA4 = 0;
-    LATAbits.LATA4 = 1;
+    TRISBbits.TRISB5 = 0;
+    LATBbits.LATB5 = 1;
     // do your TRIS and LAT commands here
     i2c_master_setup(); //INITIALIZING I2C
     ssd1306_setup(); //INITIALIZE THE OLED BOARD   
@@ -71,16 +71,16 @@ int main() {
         
     /**HEARTBEAT LED**/
            
-            LATAbits.LATA4 =1;
+            LATBbits.LATB5 =1;
             _CP0_SET_COUNT(0);
             while(_CP0_GET_COUNT() < 2400000/2){}
-            LATAbits.LATA4 =0;
+            LATBbits.LATB5 =0;
            _CP0_SET_COUNT(0);
             while(_CP0_GET_COUNT() < 2400000/2){}
-            LATAbits.LATA4 =1;
+            LATBbits.LATB5 =1;
             _CP0_SET_COUNT(0);
             while(_CP0_GET_COUNT() < 2400000/2){}
-            LATAbits.LATA4 = 0;
+            LATBbits.LATB5 = 0;
     /****/  
             
             imu_read(IMU_OUT_TEMP_L,&mess[0],7);  
@@ -94,7 +94,7 @@ int main() {
             */
             
             
-            //*** INCLINOMETER ***//
+            //INCLINOMETER//
             //The inclinometer functions like a SPIRIT LEVEL.
             //The inclinometer function uses data from x and y acc.
             //to create a 1:1 mapping to the screen resolution, we divide x by 128 pixels, so for each pixel
