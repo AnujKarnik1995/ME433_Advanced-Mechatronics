@@ -7,7 +7,7 @@ This repository contains code for the homework assignments of Advenced Mechatron
 We used a PIC32MX270F256B (SPDIP) and added various sensors. <br>
 
 ### Hardware, Firmware and other tools:
-1. A PIC32MX270F256B microcontroller is SPDIP format.
+1. A PIC32MX270F256B microcontroller in SPDIP format.
 2. An SSD1306 OLED display.
 3. Input/Output Expander MCP23017.
 4. DAC module (SPI) MCP4912.
