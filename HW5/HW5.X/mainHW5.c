@@ -6,6 +6,14 @@
 #include "font.h" //ASCII font header file
 #include "ws2812b.h" //Neo LED Header file
 
+/*
+This code generates colors using the HSBtoRGB() function and stores them in an array, col[].
+Timer2 has been configured to count the correct timings for the LEDs to turn on and off.
+The HIGHTIME and LOWTIME have been calculated for the PIC running at 48Mhz.
+These initialisations are done in the ws2812.c file.
+Each color (R,G,B) has 8 bits which are stringed together to form 24 bits of data for 1 LED.
+*/
+
 // DEVCFG0
 #pragma config DEBUG = OFF // disable debugging
 #pragma config JTAGEN = OFF // disable jtag
@@ -94,10 +102,6 @@ int main() {
             d4 = d4 + 40;
             if(d4>360){
                 d4 = d4 - 360;
-            }
-                        
-    
-        
-            
+            }           
     }
 }

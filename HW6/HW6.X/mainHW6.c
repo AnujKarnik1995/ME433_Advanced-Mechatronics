@@ -6,6 +6,12 @@
 #include <stdio.h>
 #include "imu.h"            //IMU include file
 
+/*
+Part 1 is the heartbeat LED which tells if the PIC is running.
+Part 2 is publishing the raw IMU data to the screen. We can see the gyroscope tilt data (x,y,z) and temperature data.
+Part 3 is configuring the screen to display IMU data as a spirit level.
+*/
+
 // DEVCFG0
 #pragma config DEBUG = OFF // disable debugging
 #pragma config JTAGEN = OFF // disable jtag
@@ -84,19 +90,22 @@ int main() {
     /****/  
             
             imu_read(IMU_OUT_TEMP_L,&mess[0],7);  
-            /*
+            
+            /**PART2**/
+            /*****
+            TO DISPLAY THE RAW IMU DATA, UNCOMMENT THIS SECTION AND COMMENT OUT THE SPIRIT LEVEL SECTION
             sprintf(m,"t: %d\n", mess[0]); //PRINTING 7 IMU READINGS AND A COUNTER TO SCREEN
             drawString(1,0,&m[0]);
             sprintf(m,"g: %d %d %d\n", mess[1], mess[2],mess[3]);
             drawString(1,8,&m[0]);
             sprintf(m,"a: %d %d %d\n",mess[4],mess[5],mess[6]);
             drawString(1,16,&m[0]);
-            */
+            ******/
             
-            
-            //INCLINOMETER//
-            //The inclinometer functions like a SPIRIT LEVEL.
-            //The inclinometer function uses data from x and y acc.
+            /**PART3**/
+            /***COMMENT OUT BLOCK IF RAW DATA IS NEEDED***/
+            //SPIRIT LEVEL//
+            //The spirit level function uses data from x and y acc.
             //to create a 1:1 mapping to the screen resolution, we divide x by 128 pixels, so for each pixel
             // the counter has to increment/decrement by 260.
             map2x = mess[5]/260;        
@@ -109,7 +118,7 @@ int main() {
             //reducing them makes them more sensitive, while increasing them makes them less sensitive.
             
             inclinometer(map2x, map2y);
-            
+            /*******/
             
              
     }

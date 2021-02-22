@@ -6,6 +6,12 @@
 #include <stdio.h>
 #include "rtcc.h"
 
+/*
+This program uses the rtccTime struct to store data regarding the date and time.
+the FSOSCEN register has been set to ON enabling the use of an external oscillator.
+The data is displayed onto the OLED screen.
+If the PIC loses power, the user needs to reset the date and time.
+*/
 // DEVCFG0
 #pragma config DEBUG = OFF // disable debugging
 #pragma config JTAGEN = OFF // disable jtag
@@ -87,7 +93,6 @@ int main() {
            
     /****/  
             ctr = ctr+1;        //half second counter
-           
             time= readRTCC();       
             sprintf(m,"%d%d:%d%d:%d%d\n",time.hr10,time.hr01,time.min10,time.min01,time.sec10,time.sec01);  //time array
             dayOfTheWeek(3, &day);      //day

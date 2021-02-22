@@ -1,5 +1,5 @@
 ### HW3: Interfacing the I/O Expander.
-
+<br>
 This assignment deals with interfacing the MCP23017 I/O expander with the PIC.<br>
 <br>
 A general purpose library for I2C communication has been created (i2c_master_noint.c).<br>

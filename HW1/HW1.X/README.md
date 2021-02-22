@@ -1,4 +1,4 @@
-## HW1: Basic setup and LED blinking.
+## HW1: Basic setup and LED blinking.<br>
 This file is a basic test to see if the constructed circuit works or not.<br><br>
 
 A 3.3V voltage regulator is built and used to regulate the input power supply of the PIC. <br>
