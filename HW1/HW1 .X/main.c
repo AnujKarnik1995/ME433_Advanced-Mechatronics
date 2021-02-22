@@ -1,6 +1,11 @@
 #include<xc.h>           // processor SFR definitions
 #include<sys/attribs.h>  // __ISR macro
 
+/*
+This file is a basic test to see if the constructed circuit works or not.
+Pressing a button makes the LED blink a couple of times a second.
+*/
+
 // DEVCFG0
 #pragma config DEBUG = OFF // disable debugging
 #pragma config JTAGEN = OFF // disable jtag
@@ -47,14 +52,15 @@ int main() {
 
     // disable JTAG to get pins back
     DDPCONbits.JTAGEN = 0;
-
-    TRISBbits.TRISB4 = 1;
-    TRISAbits.TRISA4 = 0;
-    LATAbits.LATA4 = 1;
+    TRISBbits.TRISB4 = 1; //set as input
+    TRISAbits.TRISA4 = 0; //configure as output
+    LATAbits.LATA4 = 1; //set initial value to HIGH (LED OFF)
     // do your TRIS and LAT commands here
 
     __builtin_enable_interrupts();
 
+    // use _CP0_SET_COUNT(0) and _CP0_GET_COUNT() to test the PIC timing
+    // remember the core timer runs at half the sysclk
     
     while (1) {
         if(PORTBbits.RB4 == 0){
@@ -69,10 +75,6 @@ int main() {
             while(_CP0_GET_COUNT() < 24000000/2){}
             LATAbits.LATA4 = 0;
         }
-        
-        
-        // use _CP0_SET_COUNT(0) and _CP0_GET_COUNT() to test the PIC timing
-        // remember the core timer runs at half the sysclk
-
     }
+    return(0);
 }

@@ -16,7 +16,7 @@ The spi_io() function is used to send the buffer data over SPI to the DAC module
 #pragma config JTAGEN = OFF // disable jtag
 #pragma config ICESEL = ICS_PGx1 // use PGED1 and PGEC1
 #pragma config PWP = OFF // disable flash write protect
-#pragma config BWP =OFF // disable boot write protect
+#pragma config BWP =OFF // disable boot write protectcd
 #pragma config CP = OFF // disable code protect
 
 // DEVCFG1

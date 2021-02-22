@@ -2,6 +2,12 @@
 #include<sys/attribs.h>  // __ISR macro
 #include"i2c_master_noint.h" //I2C header file
 
+/*
+This code has two parts. 
+A heartbeat LED connected to A4 is blinking at a high frequency. This tells us if the PIC has frozen due to I2C bus errors.
+The second part deals with setting up the I2C expander using the setPin and readPin functions.
+*/
+
 // DEVCFG0
 #pragma config DEBUG = OFF // disable debugging
 #pragma config JTAGEN = OFF // disable jtag
@@ -78,6 +84,7 @@ int main() {
     //INITIALISING GPB0 AS INPUT
     setPin(addw,comm2,val2);    
     /*
+    
     //SANITY CHECK: BLINKING LED FROM B0
     setPin(addw,comm2,val1);
     //paste in while loop
@@ -89,8 +96,6 @@ int main() {
             _CP0_SET_COUNT(0);
             while(_CP0_GET_COUNT() < 4800000/2){}
             */
-    
-    
     
     while (1) {
         /**HEARTBEAT LED**/
@@ -106,15 +111,6 @@ int main() {
             LATAbits.LATA4 = 0;
         /****/
             
-            //  TRIAL CODE TO BLINK A7 LED
-            /*setPin(addw,comm3,val3);
-            _CP0_SET_COUNT(0);
-            while(_CP0_GET_COUNT() < 4800000/2){}
-           
-            setPin(addw,comm3,val4);
-            _CP0_SET_COUNT(0);
-            while(_CP0_GET_COUNT() < 4800000/2){}
-             */
         ret_val = readPin(addw,comm4,ack);
             //takes write address and ORs it to give read address
             // takes GPB0;
@@ -127,4 +123,6 @@ int main() {
                 setPin(addw,comm3,val3);
             }    
     }
+
+    return(0);
 }

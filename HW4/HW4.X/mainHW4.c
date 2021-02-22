@@ -5,6 +5,14 @@
 #include "font.h"
 #include <stdio.h>
 
+/*
+This code deals with the SSD1306 OLED display.
+The display communicated over I2C so the i2c_master_setup() function is used.
+ssd1306_setup() is a custom function that deals with all initializations for the screen.
+The drawString() function allows text or numbers to be displayed on screen.
+As before, the heartbeat LED (A4) is used to check if the screen has frozen.
+*/
+
 // DEVCFG0
 #pragma config DEBUG = OFF // disable debugging
 #pragma config JTAGEN = OFF // disable jtag
@@ -40,7 +48,7 @@ unsigned char ret_val=0x20, j=0, k=0;
 unsigned char u[20]="Text Time Trial\n";
 unsigned char m[100];
 unsigned char FPS[30]="Just a 1 sec counter:\n";
-unsigned char mess[50]="Couldn't understand FPS\n";
+unsigned char mess[50]="Twinkle twinkle little star..\n";
 float q;
 
 
@@ -59,7 +67,6 @@ int main() {
 
     // disable JTAG to get pins back
     DDPCONbits.JTAGEN = 0;
-
     TRISBbits.TRISB4 = 1;
     TRISAbits.TRISA4 = 0;
     LATAbits.LATA4 = 1;
