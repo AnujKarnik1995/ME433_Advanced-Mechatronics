@@ -1,6 +1,16 @@
 #include<xc.h>           // processor SFR definitions
 #include<sys/attribs.h>  // __ISR macro
 #include<math.h>
+
+/*
+This function is used to create a 2Hz sine wave and a 1Hz triangle wave.
+Both the waves range from 0V to 3.3V.
+The voltage values needed to create the trinagle wave are calculated and stored in a buffer (line 78).
+The voltage values needed to create the sine wave are calculated and stored in a buffer (line 104).
+The spi_io() function is used to send the buffer data over SPI to the DAC module. 
+*/
+
+
 // DEVCFG0
 #pragma config DEBUG = OFF // disable debugging
 #pragma config JTAGEN = OFF // disable jtag
@@ -50,7 +60,6 @@ int main() {
 
     // disable JTAG to get pins back
     DDPCONbits.JTAGEN = 0;
-
     TRISBbits.TRISB4 = 1;
     TRISAbits.TRISA4 = 0;
     LATAbits.LATA4 = 0;
@@ -66,7 +75,8 @@ int main() {
     unsigned short vtgsin[150]={0};
     unsigned char aorb;
     unsigned short p,s, finsin[150], fintri[600]={0};
-    /* START OF TRIANGLE CALCULATIONS*/
+    
+    /* START OF TRIANGLE WAVE CALCULATIONS*/
     //CREATING ARRAY OF VALUES FOR TRIANGULAR WAVE
     while(u<=150){
         vtg12[u]=(4095*(u))/150;
@@ -92,12 +102,13 @@ int main() {
     /* END OF TRIANGLE CALCULATIONS*/
     
     u=1, q=149; //RESETTING COUNTERS.
-    /* START OF SINE CALCULATIONS */
+    
+    /* START OF SINE WAVE CALCULATIONS */
     while(u<=150){
         vtgsin[u]= (4096/2)+((4096/2)*(sin(2*3.14*(u)/150)));
         u++;
     }
-           /* END OF SINE CALCULATIONS*/
+    
     //final loop for sine wave
     u=1;
     while(u<151){
@@ -109,8 +120,8 @@ int main() {
         u++;
     }
     /* END OF SINE WAVE CALCULATIONS */
-    //FINTRI AND FINSIN ARE THE TWO FINAL ARRAYS.
 
+    //FINTRI AND FINSIN ARE THE TWO FINAL ARRAYS.
     q=1,u=1;
     while(1){
     _CP0_SET_COUNT(0);

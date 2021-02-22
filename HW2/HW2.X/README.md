@@ -1,0 +1,1 @@
+![Results](/images/Sine_tri_wave.png)
