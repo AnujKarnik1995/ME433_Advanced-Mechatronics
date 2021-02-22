@@ -17,7 +17,9 @@ We used a PIC32MX270F256B (SPDIP) and added various sensors. <br>
 8. n-Scope portable oscilloscope.
 
 ### File structure details:
-Every sub-directory has its own 'main' function.
+Every sub-directory has its own README and 'main' function.<br>
+Refer to those for more information.<br>
+
 ├── HW1 --> Basic setup with voltage regulator and getting the LED to blink.<br>
 ├── HW2 --> Adding the SPI based DAC. Generating a triangle and a sine wave .<br>
 ├── HW3 --> Adding the I2C based I/O expander.<br>
