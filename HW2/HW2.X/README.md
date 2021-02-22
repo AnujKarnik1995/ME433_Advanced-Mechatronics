@@ -1,1 +1,1 @@
-![Results](/HW2.X/images/Sine_tri_wave.png)
+![Results](HW2/HW2.X/images/Sine_tri_wave.png)
